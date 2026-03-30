@@ -3,168 +3,472 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administradores de Fincas Elche - Directorio Web</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Administradores de Fincas Elche - Webs Modernas 2024</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .directory-grid {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 1.5rem;
             padding: 2rem 0;
         }
-        .admin-card {
+        
+        .card {
             background: white;
-            border-radius: 12px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .card-header {
             padding: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
+            color: white;
+            position: relative;
         }
-        .admin-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-        .admin-card h3 {
-            color: #1a365d;
+        
+        /* Unique colors for each company */
+        .card-1 .card-header { background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%); } /* AF GESTIFINC - Corporate Blue */
+        .card-2 .card-header { background: linear-gradient(135deg, #722f37 0%, #9b2c2c 100%); } /* APM - Burgundy Gold */
+        .card-3 .card-header { background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%); } /* D'Lauri - Tech Purple */
+        .card-4 .card-header { background: linear-gradient(135deg, #f59e0b 0%, #c2410c 100%); } /* Fincados - Warm Orange */
+        .card-5 .card-header { background: linear-gradient(135deg, #14532d 0%, #166534 100%); } /* Serrano - Forest Green */
+        .card-6 .card-header { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); } /* MyC - Bold Red */
+        .card-7 .card-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); } /* GESTIDEM - Night Blue */
+        .card-8 .card-header { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); } /* Quorum3 - Teal */
+        .card-9 .card-header { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); } /* BRUFAL - Corporate */
+        .card-10 .card-header { background: linear-gradient(135deg, #1e40af 0%, #f97316 100%); } /* GEPYME - Business */
+        
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
             margin-bottom: 0.5rem;
         }
-        .admin-card .years {
-            color: #c9a227;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .admin-card .phone {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin: 0.5rem 0;
-        }
-        .btn-view {
+        
+        .style-tag {
             display: inline-block;
-            background: #1a365d;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            text-decoration: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 500;
-            margin-top: 0.5rem;
-        }
-        .btn-view:hover {
-            background: #c9a227;
-        }
-        .hero-directory {
-            background: linear-gradient(135deg, #1a365d 0%, #0f2744 100%);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        .hero-directory h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        .hero-directory p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+        
+        .card-1 .style-tag { background: #dbeafe; color: #1e40af; }
+        .card-2 .style-tag { background: #fef3c7; color: #92400e; }
+        .card-3 .style-tag { background: #ede9fe; color: #7c3aed; }
+        .card-4 .style-tag { background: #ffedd5; color: #c2410c; }
+        .card-5 .style-tag { background: #dcfce7; color: #166534; }
+        .card-6 .style-tag { background: #fee2e2; color: #991b1b; }
+        .card-7 .style-tag { background: #e2e8f0; color: #334155; }
+        .card-8 .style-tag { background: #ccfbf1; color: #0f766e; }
+        .card-9 .style-tag { background: #dbeafe; color: #1d4ed8; }
+        .card-10 .style-tag { background: #fed7aa; color: #c2410c; }
+        
+        .experience {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .experience strong {
+            color: #111827;
+        }
+        
+        .phone {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .description {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .btn-view {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .card-1 .btn-view { background: #1e3a5f; color: white; }
+        .card-1 .btn-view:hover { background: #1e40af; }
+        
+        .card-2 .btn-view { background: #722f37; color: white; }
+        .card-2 .btn-view:hover { background: #7f1d1d; }
+        
+        .card-3 .btn-view { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; }
+        .card-3 .btn-view:hover { opacity: 0.9; }
+        
+        .card-4 .btn-view { background: #f59e0b; color: white; }
+        .card-4 .btn-view:hover { background: #d97706; }
+        
+        .card-5 .btn-view { background: #14532d; color: white; }
+        .card-5 .btn-view:hover { background: #166534; }
+        
+        .card-6 .btn-view { background: #dc2626; color: white; }
+        .card-6 .btn-view:hover { background: #b91c1c; }
+        
+        .card-7 .btn-view { background: #0f172a; color: white; }
+        .card-7 .btn-view:hover { background: #1e293b; }
+        
+        .card-8 .btn-view { background: #14b8a6; color: white; }
+        .card-8 .btn-view:hover { background: #0d9488; }
+        
+        .card-9 .btn-view { background: #2563eb; color: white; }
+        .card-9 .btn-view:hover { background: #1d4ed8; }
+        
+        .card-10 .btn-view { background: linear-gradient(135deg, #1e40af, #f97316); color: white; }
+        .card-10 .btn-view:hover { opacity: 0.9; }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="hero-directory">
-        <div class="container">
-            <h1>🏢 Administradores de Fincas en Elche</h1>
-            <p>10 páginas web profesionales creadas para administradores de fincas</p>
-        </div>
-    </div>
-
     <div class="container">
-        <div class="directory-grid">
-            <div class="admin-card">
-                <h3>AF GESTIFINC</h3>
-                <div class="years">⭐ 15 años de experiencia</div>
-                <div class="phone">📞 965 43 70 07</div>
-                <p>Gestión integral de comunidades en Elche</p>
-                <a href="admin-1.html" class="btn-view">Ver Web →</a>
+        <header class="header">
+            <div class="badge">🎨 10 Diseños Únicos & Modernos</div>
+            <h1>Administradores de Fincas Elche</h1>
+            <p>Cada web tiene su propia identidad visual distintiva. Diseños profesionales, modernos y únicos para cada empresa.</p>
+        </header>
+
+        <div class="grid">
+            <!-- AF GESTIFINC -->
+            <div class="card card-1">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Corporate Profesional</span>
+                    <h2 class="company-name">AF GESTIFINC</h2>
+                    <div class="experience">
+                        <span>⭐</span>
+                        <strong>15 años</strong> de experiencia
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        965 43 70 07
+                    </div>
+                    <p class="description">Estilo corporate limpio y confiable. Paleta azul marino con acentos dorados. Tipografía Inter + Playfair Display.</p>
+                    
+                    <a href="admin-1.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>APM Administradores</h3>
-                <div class="years">🏆 36 años de experiencia</div>
-                <div class="phone">📞 966 613 289</div>
-                <p>La administradora más veterana de Elche (desde 1989)</p>
-                <a href="admin-2.html" class="btn-view">Ver Web →</a>
+            <!-- APM Administradores -->
+            <div class="card card-2">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Clásico Prestigioso</span>
+                    <h2 class="company-name">APM Administradores</h2>
+                    <div class="experience">
+                        <span>🏆</span>
+                        <strong>36 años</strong> - La más veterana
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        966 613 289
+                    </div>
+                    <p class="description">Elegancia clásica con borgoña y dorado. Tipografía serif Cormorant Garamond. Diseño prestigioso que refleja 36 años de trayectoria.</p>
+                    
+                    <a href="admin-2.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>D'Lauri Administración</h3>
-                <div class="years">⭐ 15 años de experiencia</div>
-                <div class="phone">📞 965 468 221</div>
-                <p>Innovación, transparencia y atención personal</p>
-                <a href="admin-3.html" class="btn-view">Ver Web →</a>
+            <!-- D'Lauri -->
+            <div class="card card-3">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Tech Moderno</span>
+                    <h2 class="company-name">D'Lauri Administración</h2>
+                    <div class="experience">
+                        <span>🚀</span>
+                        <strong>Innovación</strong> digital
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        965 468 221
+                    </div>
+                    <p class="description">Diseño futurista con gradientes morados, glassmorphism y efectos blur. Tipografía Space Grotesk. Para la empresa más innovadora.</p>
+                    
+                    <a href="admin-3.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>Fincados</h3>
-                <div class="years">🏆 30+ años de experiencia</div>
-                <div class="phone">📞 965 458 037</div>
-                <p>Cercanía y eficacia en gestión de comunidades</p>
-                <a href="admin-4.html" class="btn-view">Ver Web →</a>
+            <!-- Fincados -->
+            <div class="card card-4">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Cálido y Cercano</span>
+                    <h2 class="company-name">Fincados</h2>
+                    <div class="experience">
+                        <span>🤝</span>
+                        <strong>30+ años</strong> de cercanía
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        965 458 037
+                    </div>
+                    <p class="description">Paleta cálida de naranjas y terracota. Formas orgánicas y sensación acogedora. Tipografía Nunito. WhatsApp disponible.</p>
+                    
+                    <a href="admin-4.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>Serrano y Castillo</h3>
-                <div class="years">🏆 23 años de experiencia</div>
-                <div class="phone">📞 No especificado</div>
-                <p>Administración + Servicios Inmobiliarios</p>
-                <a href="admin-5.html" class="btn-view">Ver Web →</a>
+            <!-- Serrano y Castillo -->
+            <div class="card card-5">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Sofisticado Dual</span>
+                    <h2 class="company-name">Serrano y Castillo</h2>
+                    <div class="experience">
+                        <span>🏛️</span>
+                        <strong>23 años</strong> + Inmobiliaria
+                    </div>
+                    <div class="phone">
+                        <span>📍</span>
+                        C/ Maestro Serrano, 9
+                    </div>
+                    <p class="description">Verde bosque con dorado viejo. Diseño premium que refleja doble servicio: administración + inmobiliaria. Tipografía Source Serif Pro.</p>
+                    
+                    <a href="admin-5.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>MyC Administradores</h3>
-                <div class="years">🏆 20+ años de experiencia</div>
-                <div class="phone">📞 965 409 615</div>
-                <p>120+ comunidades gestionadas en la zona</p>
-                <a href="admin-6.html" class="btn-view">Ver Web →</a>
+            <!-- MyC Administradores -->
+            <div class="card card-6">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Bold y Económico</span>
+                    <h2 class="company-name">MyC Administradores</h2>
+                    <div class="experience">
+                        <span>💪</span>
+                        <strong>20+ años</strong> | 120+ comunidades
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        965 409 615
+                    </div>
+                    <p class="description">Rojo energía con negro carbón. Tipografía bold Bebas Neue. Destaca el precio: 2€/mes por vecino. Diseño impactante y directo.</p>
+                    
+                    <a href="admin-6.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>GESTIDEM</h3>
-                <div class="years">⭐ 15 años de experiencia</div>
-                <div class="phone">📞 966 22 28 48</div>
-                <p>Servicio 24h + Abogados especializados</p>
-                <a href="admin-7.html" class="btn-view">Ver Web →</a>
+            <!-- GESTIDEM -->
+            <div class="card card-7">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Legal Corporativo</span>
+                    <h2 class="company-name">GESTIDEM</h2>
+                    <div class="experience">
+                        <span>⚖️</span>
+                        <strong>24h</strong> + Abogados
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        966 22 28 48
+                    </div>
+                    <p class="description">Azul noche profesional para servicio legal. Badge 24h animado. Tipografía Crimson Text. Seriedad y confianza jurídica.</p>
+                    
+                    <a href="admin-7.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>Quorum3</h3>
-                <div class="years">⭐ 15 años de experiencia</div>
-                <div class="phone">📞 965 42 34 85</div>
-                <p>Asesoramiento legal y gestión técnica</p>
-                <a href="admin-8.html" class="btn-view">Ver Web →</a>
+            <!-- Quorum3 -->
+            <div class="card card-8">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Técnico y Estructurado</span>
+                    <h2 class="company-name">Quorum3</h2>
+                    <div class="experience">
+                        <span>⚙️</span>
+                        <strong>Legalización</strong> de actas
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        965 42 34 85
+                    </div>
+                    <p class="description">Teal técnico con gris slate. Diseño estructurado con grids y diagramas. Tipografía Work Sans. Precisión y organización.</p>
+                    
+                    <a href="admin-8.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>BRUFAL ADMINISTRACIONES</h3>
-                <div class="years">⭐ 13 años de experiencia</div>
-                <div class="phone">📞 965 068 377</div>
-                <p>Grupo 4House - Profesionalidad garantizada</p>
-                <a href="admin-9.html" class="btn-view">Ver Web →</a>
+            <!-- BRUFAL -->
+            <div class="card card-9">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Grupo Corporativo</span>
+                    <h2 class="company-name">BRUFAL ADMINISTRACIONES</h2>
+                    <div class="experience">
+                        <span>🏢</span>
+                        <strong>13 años</strong> - Grupo 4House
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        965 068 377
+                    </div>
+                    <p class="description">Azul corporativo moderno con badge "Grupo 4House". Cards con sombra elegante. Tipografía Poppins. Profesionalidad de grupo empresarial.</p>
+                    
+                    <a href="admin-9.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="admin-card">
-                <h3>GEPYME GESTIÓN INTEGRAL</h3>
-                <div class="years">🏆 20+ años de experiencia</div>
-                <div class="phone">📞 966 61 29 99</div>
-                <p>Asesoramiento integral de empresas</p>
-                <a href="admin-10.html" class="btn-view">Ver Web →</a>
+            <!-- GEPYME -->
+            <div class="card card-10">
+                <div class="card-header"></div>
+                <div class="card-content">
+                    <span class="style-tag">Negocios Integral</span>
+                    <h2 class="company-name">GEPYME GESTIÓN</h2>
+                    <div class="experience">
+                        <span>📊</span>
+                        <strong>20+ años</strong> integral
+                    </div>
+                    <div class="phone">
+                        <span>📞</span>
+                        966 61 29 99
+                    </div>
+                    <p class="description">Gradiente azul-naranja para servicios integrales. Timeline de servicios visible. Tipografía Libre Franklin. Horario destacado en badge.</p>
+                    
+                    <a href="admin-10.html" class="btn-view">
+                        Ver Web <span>→</span>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <footer style="text-align: center; padding: 3rem 0; color: #64748b;">
-            <p>© 2024 - Webs creadas con ❤️ para administradores de fincas en Elche</p>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem;">
-                <a href="https://github.com/nexoflow-spain/admin-fincas-elche" target="_blank" style="color: #1a365d;">Ver en GitHub</a>
-            </p>
+        <footer>
+            <p>🎨 10 diseños únicos creados con ❤️ | <a href="https://github.com/nexoflow-spain/admin-fincas-elche" target="_blank">Ver en GitHub</a></p>
         </footer>
     </div>
 </body>

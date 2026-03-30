@@ -3,386 +3,808 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GESTIDEM | Administración de Fincas en Elche</title>
-    <meta name="description" content="GESTIDEM - Servicios profesionales de administración de fincas en Elche. Administración de fincas, Administración de comunidades de propietarios, Gestión contable.">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="GESTIDEM - Abogados, Administración de Fincas y Asesoría en Elche. Servicio 24 horas, defensa jurídica integral y gestión profesional.">
+    <meta name="keywords" content="GESTIDEM, abogados Elche, administración fincas, asesoría, servicio 24h, gestión integral">
+    <meta name="author" content="GESTIDEM">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="GESTIDEM | Abogados, Fincas y Asesoría 24h">
+    <meta property="og:description" content="Servicio integral legal y de administración disponible 24 horas en Elche.">
+    <meta property="og:type" content="website">
+    <title>GESTIDEM | Abogados, Administración de Fincas y Asesoría 24h en Elche</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --night: #0f172a;
+            --night-light: #1e293b;
+            --night-lighter: #334155;
+            --silver: #94a3b8;
+            --silver-light: #cbd5e1;
+            --pure-white: #ffffff;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--night);
+            color: var(--pure-white);
+            line-height: 1.7;
+        }
+        
+        /* Legal Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--night);
+            border-bottom: 1px solid var(--night-lighter);
+        }
+        
+        .header-banner {
+            background: var(--accent);
+            padding: 0.5rem;
+            text-align: center;
+        }
+        
+        .header-banner-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .logo-scales {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .logo-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--pure-white);
+        }
+        
+        .cta-btn {
+            background: var(--accent);
+            color: var(--pure-white);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            background: var(--accent-light);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--night) 0%, var(--night-light) 100%);
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, var(--night-lighter) 1px, transparent 1px),
+                linear-gradient(var(--night-lighter) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 1.5s ease infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .hero p {
+            color: var(--silver);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--accent);
+            color: var(--pure-white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-cta:hover {
+            background: var(--accent-light);
+            transform: translateX(5px);
+        }
+        
+        .services-summary {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .service-box {
+            background: var(--night-light);
+            border: 1px solid var(--night-lighter);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-box:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .service-box-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .service-box h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-box p {
+            color: var(--silver);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        
+        /* 24h Banner */
+        .banner-24h {
+            background: var(--accent);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .banner-24h-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .banner-24h-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .banner-24h h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .banner-24h p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--night-light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            color: var(--silver);
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .service-card {
+            background: var(--night);
+            border: 1px solid var(--night-lighter);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            border-color: var(--accent);
+        }
+        
+        .service-card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .service-card p {
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        /* Legal Areas */
+        .legal-areas {
+            padding: 4rem 2rem;
+            background: var(--night);
+        }
+        
+        .legal-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .legal-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--night-light);
+            border-left: 3px solid var(--accent);
+        }
+        
+        .legal-item span:first-child {
+            font-size: 1.25rem;
+        }
+        
+        .legal-item span:last-child {
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--night-light);
+        }
+        
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contact-info h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info h2 span {
+            color: var(--accent);
+        }
+        
+        .contact-info > p {
+            color: var(--silver);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            padding: 1rem;
+            background: var(--night);
+            border: 1px solid var(--night-lighter);
+        }
+        
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .contact-details strong {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-details a, .contact-details span {
+            color: var(--pure-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: var(--accent);
+        }
+        
+        .emergency-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--accent);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .emergency-box strong {
+            display: block;
+            color: var(--accent);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .emergency-box a {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            color: var(--pure-white);
+            text-decoration: none;
+        }
+        
+        .contact-form {
+            background: var(--night);
+            border: 1px solid var(--night-lighter);
+            padding: 2.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--night-light);
+            border: 1px solid var(--night-lighter);
+            color: var(--pure-white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--silver);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: var(--pure-white);
+            border: none;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: var(--accent-light);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--night);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--night-lighter);
+        }
+        
+        .footer-logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-text {
+            color: var(--silver);
+            font-size: 0.85rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 8rem;
+            }
+            
+            .services-summary {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .legal-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <a href="#" class="logo">
-                <span class="logo-icon">◆</span>
+    <header>
+        <div class="header-banner">
+            <span class="header-banner-text">⚖️ Servicio disponible 24 horas ⚖️</span>
+        </div>
+        <nav>
+            <div class="logo">
+                <div class="logo-scales">⚖️</div>
                 <span class="logo-text">GESTIDEM</span>
-            </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                <li><a href="#contacto" class="btn btn-primary">Consulta Gratuita</a></li>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
-        </div>
-    </nav>
+            <a href="tel:966222848" class="cta-btn">Urgencias 24h</a>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="inicio">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="container">
+        <div class="hero-container">
             <div class="hero-content">
-                <span class="hero-badge">✓ Administración Profesional de Fincas</span>
-                <h1 class="hero-title">Administración de Fincas con <span class="highlight">Profesionalidad</span> en <span class="highlight">Elche</span></h1>
-                <p class="hero-description">GESTIDEM gestiona su comunidad con transparencia, eficiencia y un compromiso absoluto con sus intereses. Su tranquilidad es nuestra prioridad.</p>
-                <div class="hero-buttons">
-                    <a href="#contacto" class="btn btn-primary btn-lg">Solicitar Presupuesto</a>
-                    <a href="#servicios" class="btn btn-outline btn-lg">Nuestros Servicios</a>
+                <div class="hero-badge">Servicio 24 Horas</div>
+                <h1>Abogados, Fincas <br><em>y Asesoría</em></h1>
+                <p>Empresa integral que combina servicios de administración de fincas con asesoría legal y de empresas. Disponemos de amplio equipo de juristas especializados.</p>
+                <a href="#contacto" class="hero-cta">
+                    Consulta gratuita →
+                </a>
+            </div>
+            <div class="services-summary">
+                <div class="service-box">
+                    <div class="service-box-icon">🏢</div>
+                    <h3>Administración</h3>
+                    <p>Gestión integral de fincas y comunidades</p>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number" data-count="275">0</span>
-                        <span class="stat-suffix">+</span>
-                        <span class="stat-label">Comunidades gestionadas</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="15">0</span>
-                        <span class="stat-suffix"></span>
-                        <span class="stat-label">Años de experiencia</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="94">0</span>
-                        <span class="stat-suffix">%</span>
-                        <span class="stat-label">Clientes satisfechos</span>
-                    </div>
+                <div class="service-box">
+                    <div class="service-box-icon">⚖️</div>
+                    <h3>Abogados</h3>
+                    <p>Defensa jurídica en todas las áreas</p>
+                </div>
+                <div class="service-box">
+                    <div class="service-box-icon">📊</div>
+                    <h3>Asesoría</h3>
+                    <p>Gestión empresarial integral</p>
+                </div>
+                <div class="service-box">
+                    <div class="service-box-icon">🚨</div>
+                    <h3>24 Horas</h3>
+                    <p>Servicio de emergencias</p>
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <span></span>
+    </section>
+
+    <section class="banner-24h">
+        <div class="banner-24h-content">
+            <div class="banner-24h-icon">🕐</div>
+            <h2>SERVICIO DE EMERGENCIAS 24H</h2>
+            <p>Estamos disponibles las 24 horas del día, los 365 días del año para atender cualquier incidencia urgente en su comunidad.</p>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="servicios">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Nuestros Servicios</span>
-                <h2 class="section-title">Gestión Integral de su Comunidad</h2>
-                <p class="section-description">Ofrecemos un servicio completo que abarca todos los aspectos de la administración de fincas y comunidades de propietarios en Elche y alrededores.</p>
+        <div class="section-header">
+            <span class="section-tag">Áreas de Especialización</span>
+            <h2 class="section-title">Servicios Integrales</h2>
+            <p class="section-subtitle">Una oferta completa que cubre todas las necesidades legales y administrativas de su comunidad.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-card-icon">🏢</div>
+                <h3>Administración de Fincas</h3>
+                <p>Gestión completa de comunidades de propietarios con total profesionalidad.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/></svg>
-                    </div>
-                    <h3 class="service-title">Administración de fincas</h3>
-                    <p class="service-description">Servicio profesional de administración de fincas para su comunidad de propietarios.</p>
-                    <a href="#contacto" class="service-link">Más información →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/></svg>
-                    </div>
-                    <h3 class="service-title">Administración de comunidades de propietarios</h3>
-                    <p class="service-description">Servicio profesional de administración de comunidades de propietarios para su comunidad de propietarios.</p>
-                    <a href="#contacto" class="service-link">Más información →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
-                    </div>
-                    <h3 class="service-title">Gestión contable</h3>
-                    <p class="service-description">Servicio profesional de gestión contable para su comunidad de propietarios.</p>
-                    <a href="#contacto" class="service-link">Más información →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/></svg>
-                    </div>
-                    <h3 class="service-title">Gestión de incidencias</h3>
-                    <p class="service-description">Servicio profesional de gestión de incidencias para su comunidad de propietarios.</p>
-                    <a href="#contacto" class="service-link">Más información →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/></svg>
-                    </div>
-                    <h3 class="service-title">Servicio de emergencias 24h</h3>
-                    <p class="service-description">Servicio profesional de servicio de emergencias 24h para su comunidad de propietarios.</p>
-                    <a href="#contacto" class="service-link">Más información →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
-                    </div>
-                    <h3 class="service-title">Digitalización de archivos</h3>
-                    <p class="service-description">Servicio profesional de digitalización de archivos para su comunidad de propietarios.</p>
-                    <a href="#contacto" class="service-link">Más información →</a>
-                </div>
+            <div class="service-card">
+                <div class="service-card-icon">💰</div>
+                <h3>Gestión Contable</h3>
+                <p>Contabilidad precisa y transparente para su comunidad.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card-icon">📁</div>
+                <h3>Digitalización</h3>
+                <p>Archivos digitalizados para un acceso rápido y seguro.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card-icon">🚨</div>
+                <h3>Emergencias 24h</h3>
+                <p>Atención inmediata ante cualquier incidencia urgente.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card-icon">⚖️</div>
+                <h3>Defensa Jurídica</h3>
+                <p>Amplio equipo de juristas especializados a su servicio.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card-icon">🏢</div>
+                <h3>Asesoría Empresas</h3>
+                <p>Gestión integral para empresas y autónomos.</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="nosotros">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content">
-                    <span class="section-tag">Sobre Nosotros</span>
-                    <h2 class="section-title">Su Confianza, Nuestro Compromiso</h2>
-                    <p class="about-text">Nos dedicamos a transformar la gestión de comunidades de propietarios en Elche. Entendemos que cada finca es única, por eso ofrecemos soluciones personalizadas que se adaptan a las necesidades específicas de cada cliente.</p>
-                    <p class="about-text">Empresa integral que combina servicios de administración de fincas con asesoría legal y de empresas. Disponen de amplio equipo de juristas especializados.</p>
-                    <div class="about-features">
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Administradores Colegiados</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Transparencia Total</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Atención Personalizada</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Presupuesto Sin Compromiso</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-wrapper">
-                        <div class="image-placeholder">
-                            <span>Equipo Profesional</span>
-                        </div>
-                        <div class="experience-badge">
-                            <span class="exp-number">15+</span>
-                            <span class="exp-text">Años de<br>experiencia</span>
-                        </div>
-                    </div>
-                </div>
+    <section class="legal-areas">
+        <div class="legal-grid">
+            <div class="legal-item">
+                <span>⚖️</span>
+                <span>Derecho Mercantil</span>
+            </div>
+            <div class="legal-item">
+                <span>⚖️</span>
+                <span>Derecho Civil</span>
+            </div>
+            <div class="legal-item">
+                <span>⚖️</span>
+                <span>Derecho Administrativo</span>
+            </div>
+            <div class="legal-item">
+                <span>⚖️</span>
+                <span>Derecho Laboral</span>
+            </div>
+            <div class="legal-item">
+                <span>⚖️</span>
+                <span>Derecho Penal</span>
+            </div>
+            <div class="legal-item">
+                <span>🚗</span>
+                <span>Accidentes de Tráfico</span>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header centered">
-                <span class="section-tag">Testimonios</span>
-                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">"Excelente gestión de nuestra comunidad. Profesionalidad y respuesta rápante ante cualquier incidencia. Totalmente recomendables."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MR</div>
-                        <div class="author-info">
-                            <span class="author-name">María Rodríguez</span>
-                            <span class="author-role">Presidenta, Comunidad de Vecinos</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">"Desde que contratamos sus servicios, la administración de nuestra finca ha mejorado notablemente. Transparencia total."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JG</div>
-                        <div class="author-info">
-                            <span class="author-name">Javier García</span>
-                            <span class="author-role">Vicepresidente, Residencial Parque</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">"Gran equipo de profesionales. Nos ayudaron a resolver un conflicto vecinal complejo con gran eficacia."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">CP</div>
-                        <div class="author-info">
-                            <span class="author-name">Carmen Pérez</span>
-                            <span class="author-role">Propietaria, Edificio Centro</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">¿Listo para mejorar la gestión de su comunidad?</h2>
-                <p class="cta-description">Solicite una consulta gratuita y sin compromiso. Analizaremos su situación y le propondremos la mejor solución para su comunidad en Elche.</p>
-                <a href="#contacto" class="btn btn-light btn-lg">Solicitar Consulta Gratuita</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
     <section class="contact" id="contacto">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <span class="section-tag">Contacto</span>
-                    <h2 class="section-title">Hablemos de su Comunidad</h2>
-                    <p class="contact-description">Estamos aquí para ayudarle. Contáctenos y le responderemos en menos de 24 horas.</p>
-                    
-                    <div class="contact-items">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/>
-                                    <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                </svg>
-                            </div>
-                            <div class="contact-details">
-                                <span class="contact-label">Dirección</span>
-                                <span class="contact-value">C/ Gabriel Miró, 4, Entresuelo Centro, 03201 Elche (Alicante)</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                </svg>
-                            </div>
-                            <div class="contact-details">
-                                <span class="contact-label">Teléfono</span>
-                                <span class="contact-value">966 22 28 48</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>
-                                </svg>
-                            </div>
-                            <div class="contact-details">
-                                <span class="contact-label">Email</span>
-                                <span class="contact-value">info@gestidem.com</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
-                                </svg>
-                            </div>
-                            <div class="contact-details">
-                                <span class="contact-label">Horario</span>
-                                <span class="contact-value">Lunes a Viernes: 9:00 - 18:00</span>
-                            </div>
-                        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Contacte con <span>GESTIDEM</span></h2>
+                <p>Disponemos de amplio equipo de juristas especializados listos para atenderle.</p>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <strong>Dirección</strong>
+                        <span>C/ Gabriel Miró, 4, Entresuelo Centro<br>03201 Elche (Alicante)</span>
                     </div>
                 </div>
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Nombre completo</label>
-                                <input type="text" id="name" name="name" required placeholder="Su nombre">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Teléfono</label>
-                                <input type="tel" id="phone" name="phone" placeholder="+34 600 000 000">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo electrónico</label>
-                            <input type="email" id="email" name="email" required placeholder="su@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="community">Nombre de la comunidad</label>
-                            <input type="text" id="community" name="community" placeholder="Ej: Comunidad Edificio Centro">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensaje</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Cuéntenos sobre su comunidad y qué necesita..."></textarea>
-                        </div>
-                        <div class="form-group form-checkbox">
-                            <input type="checkbox" id="privacy" name="privacy" required>
-                            <label for="privacy">Acepto la política de privacidad y el tratamiento de mis datos</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full">Enviar Mensaje</button>
-                    </form>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <strong>Teléfono</strong>
+                        <a href="tel:966222848">966 22 28 48</a>
+                    </div>
                 </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-details">
+                        <strong>Web</strong>
+                        <a href="https://www.gestidem.com" target="_blank">gestidem.com</a>
+                    </div>
+                </div>
+                <div class="emergency-box">
+                    <strong>Servicio de Emergencias 24h</strong>
+                    <a href="tel:966222848">966 22 28 48</a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Teléfono">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Asunto">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Describa su consulta"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar consulta</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <span class="logo-icon">◆</span>
-                        <span class="logo-text">GESTIDEM</span>
-                    </a>
-                    <p class="footer-description">Administración profesional de fincas y comunidades de propietarios en Elche. Su tranquilidad, nuestro compromiso.</p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4 class="footer-title">Servicios</h4>
-                    <ul>
-                        <li><a href="#servicios">Administración Integral</a></li>
-                        <li><a href="#servicios">Asesoría Legal</a></li>
-                        <li><a href="#servicios">Mantenimiento</a></li>
-                        <li><a href="#servicios">Gestión Económica</a></li>
-                        <li><a href="#servicios">Seguros</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4 class="footer-title">Empresa</h4>
-                    <ul>
-                        <li><a href="#nosotros">Sobre Nosotros</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                        <li><a href="https://www.gestidem.com" target="_blank">Sitio Web</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4 class="footer-title">Legal</h4>
-                    <ul>
-                        <li><a href="#">Aviso Legal</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                        <li><a href="#">Política de Cookies</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 GESTIDEM. Todos los derechos reservados.</p>
-            </div>
-        </div>
+    <footer>
+        <div class="footer-logo">GESTIDEM</div>
+        <p class="footer-text">Abogados · Administración de Fincas · Asesoría · Servicio 24h</p>
+        <p class="footer-text" style="margin-top: 0.5rem;">© 2024 GESTIDEM. Todos los derechos reservados.</p>
     </footer>
-
-    <script src="js/main.js"></script>
 </body>
 </html>
